@@ -23,23 +23,23 @@ namespace Zoologico.API.Controllers
 
         // GET: api/Especies
         [HttpGet]
-        public async Task<ActionResult<ApiResult>> GetEspecie()
+        public async Task<ActionResult<ApiResult<List<Especie>>>> GetEspecie()
         {
             try
             {
                 var data = await _context.Especies.ToListAsync();
-                return ApiResult.Ok(data);
+                return ApiResult<List<Especie>>.Ok(data);
             }
             catch (Exception ex)
             {
-                return ApiResult.Fail(ex.Message);
+                return ApiResult<List<Especie>>.Fail(ex.Message);
             }
             
         }
 
         // GET: api/Especies/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ApiResult>> GetEspecie(int id)
+        public async Task<ActionResult<ApiResult<Especie>>> GetEspecie(int id)
         {
             try
             {
@@ -50,25 +50,25 @@ namespace Zoologico.API.Controllers
 
                 if (especie == null)
                 {
-                    return ApiResult.Fail("Datos no encontrados");
+                    return ApiResult<Especie>.Fail("Datos no encontrados");
                 }
 
-                return ApiResult.Ok(especie);
+                return ApiResult<Especie>.Ok(especie);
             }
             catch (Exception ex)
             {
-                return ApiResult.Fail(ex.Message);
+                return ApiResult<Especie>.Fail(ex.Message);
             }
         }
 
         // PUT: api/Especies/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<ActionResult<ApiResult>> PutEspecie(int id, Especie especie)
+        public async Task<ActionResult<ApiResult<Especie>>> PutEspecie(int id, Especie especie)
         {
             if (id != especie.Codigo)
             {
-                return ApiResult.Fail("No coinciden los identificadores");
+                return ApiResult<Especie>.Fail("No coinciden los identificadores");
             }
 
             _context.Entry(especie).State = EntityState.Modified;
@@ -81,55 +81,55 @@ namespace Zoologico.API.Controllers
             {
                 if (!EspecieExists(id))
                 {
-                    return ApiResult.Fail("Datos no encontrados");
+                    return ApiResult<Especie>.Fail("Datos no encontrados");
                 }
                 else
                 {
-                    return ApiResult.Fail(ex.Message);
+                    return ApiResult<Especie>.Fail(ex.Message);
                 }
             }
 
-            return ApiResult.Ok(null);
+            return ApiResult<Especie>.Ok(null);
         }
 
         // POST: api/Especies
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<ApiResult>> PostEspecie(Especie especie)
+        public async Task<ActionResult<ApiResult<Especie>>> PostEspecie(Especie especie)
         {
             try
             {
                 _context.Especies.Add(especie);
                 await _context.SaveChangesAsync();
 
-                return ApiResult.Ok(especie);
+                return ApiResult<Especie>.Ok(especie);
             }
             catch (Exception ex)
             {
-                return ApiResult.Fail(ex.Message);
+                return ApiResult<Especie>.Fail(ex.Message);
             }
         }
 
         // DELETE: api/Especies/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ApiResult>> DeleteEspecie(int id)
+        public async Task<ActionResult<ApiResult<Especie>>> DeleteEspecie(int id)
         {
             try
             {
                 var especie = await _context.Especies.FindAsync(id);
                 if (especie == null)
                 {
-                    return ApiResult.Fail("datos no encontrados");
+                    return ApiResult<Especie>.Fail("datos no encontrados");
                 }
 
                 _context.Especies.Remove(especie);
                 await _context.SaveChangesAsync();
 
-                return ApiResult.Ok(null);
+                return ApiResult<Especie>.Ok(null);
             }
             catch (Exception ex)
             {
-                return ApiResult.Fail(ex.Message);
+                return ApiResult<Especie>.Fail(ex.Message);
             }
         }
 

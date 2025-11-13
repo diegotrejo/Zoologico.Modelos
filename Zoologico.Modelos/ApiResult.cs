@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace Zoologico.Modelos
 {
-    public class ApiResult
+    public class ApiResult<T>
     {
         public bool Success { get; set; }
         public string Message { get; set; }
-        public object Data { get; set; }
+        public T Data { get; set; }
 
-        public static ApiResult Ok(object data)
+        public static ApiResult<T> Ok(T data)
         {
-            return new ApiResult
+            return new ApiResult<T>
             {
                 Success = true,
                 Data = data
             };
         }
 
-        public static ApiResult Fail(string message)
+        public static ApiResult<T> Fail(string message)
         {
-            return new ApiResult
+            return new ApiResult<T>
             {
                 Success = false,
                 Message = message
