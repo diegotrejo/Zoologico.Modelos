@@ -1,18 +1,31 @@
-﻿namespace Zoologico.ApiTest
+﻿using Zoologico.ApiConsumer;
+using Zoologico.Modelos;
+
+namespace Zoologico.ApiTest
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            var httpClient = new HttpClient();
+            Crud<Raza>.UrlBase = "http://10.147.19.119/api/Razas";
+            Crud<Especie>.UrlBase = "http://10.147.19.119/api/Especies";
+            // insertar una especie
+            var nuevaEspecie = new Especie
+            {
+                Codigo = 0,
+                NombreComun = "León"
+            };
+            var apiResult = Crud<Especie>.Create(nuevaEspecie);
+            var especies = Crud<Especie>.ReadAll();
 
-            httpClient.BaseAddress = new Uri("https://localhost:7011/");
-            var response = httpClient.GetAsync("api/Especies").Result;
-            var json = response.Content.ReadAsStringAsync().Result;
+            nuevaEspecie = apiResult.Data;
+            nuevaEspecie.NombreComun = "León Modificado";
+            Crud<Especie>.Update( nuevaEspecie.Codigo.ToString(), nuevaEspecie);
 
-            var especies = Newtonsoft.Json.JsonConvert.DeserializeObject<Modelos.ApiResult<List<Modelos.Especie>>>(json);
+            var unaEspecie = Crud<Especie>.ReadBy("Codigo", "12");
+            Crud<Especie>.Delete("12");
 
-            Console.WriteLine(json);
+            Console.WriteLine(apiResult);
             Console.ReadLine();
         }
     }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol.Core.Types;
+using Serilog;
 using Zoologico.Modelos;
 
 namespace Zoologico.API.Controllers
@@ -38,7 +39,7 @@ namespace Zoologico.API.Controllers
         }
 
         // GET: api/Especies/5
-        [HttpGet("{id}")]
+        [HttpGet("Codigo/{id}")]
         public async Task<ActionResult<ApiResult<Especie>>> GetEspecie(int id)
         {
             try
@@ -68,6 +69,7 @@ namespace Zoologico.API.Controllers
         {
             if (id != especie.Codigo)
             {
+                Log.Error($"No coinciden los identificadores");
                 return ApiResult<Especie>.Fail("No coinciden los identificadores");
             }
 
@@ -81,14 +83,17 @@ namespace Zoologico.API.Controllers
             {
                 if (!EspecieExists(id))
                 {
+                    Log.Error($"Datos  no encontrados");
                     return ApiResult<Especie>.Fail("Datos no encontrados");
                 }
                 else
                 {
+                    Log.Error($"Error: {ex.Message}");
                     return ApiResult<Especie>.Fail(ex.Message);
                 }
             }
 
+            Log.Information($"Especie con id {id} actualizada exitosamente.");
             return ApiResult<Especie>.Ok(null);
         }
 
