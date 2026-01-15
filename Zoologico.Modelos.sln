@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.1.11304.174 d18.0
+VisualStudioVersion = 18.1.11304.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoologico.Modelos", "Zoologico.Modelos\Zoologico.Modelos.csproj", "{871EF750-8444-4B2B-A78A-CF328710ADAA}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoologico.ApiTest", "Zoologico.ApiTest\Zoologico.ApiTest.csproj", "{973DB902-E84F-4B66-BDF6-F279EC27D9AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoologico.ApiConsumer", "Zoologico.ApiConsumer\Zoologico.ApiConsumer.csproj", "{2077E120-6BF2-4F1B-872F-C718BE404B6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zooologico.MVC", "Zooologico.MVC\Zooologico.MVC.csproj", "{41F1A95E-3DAA-433B-9095-023730E05612}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{2077E120-6BF2-4F1B-872F-C718BE404B6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2077E120-6BF2-4F1B-872F-C718BE404B6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2077E120-6BF2-4F1B-872F-C718BE404B6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41F1A95E-3DAA-433B-9095-023730E05612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41F1A95E-3DAA-433B-9095-023730E05612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41F1A95E-3DAA-433B-9095-023730E05612}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41F1A95E-3DAA-433B-9095-023730E05612}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
